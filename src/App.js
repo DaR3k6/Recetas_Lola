@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useEffect, useState } from "react";
+import PantallaCarga from "./components/pantallaCarga";
+import CabeceraPrincipal from "./components/cabeceraPrincipal";
+import CabeceraCarusel from "./components/cabeceraCarusel";
+import ContenidoMenu from "./components/contenidoMenu";
 function App() {
+  const [carga, setCarga] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setCarga(false);
+    }, 1000);
+  });
+
+  if (carga) {
+    return <PantallaCarga />;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header class="header_area" id="header">
+        <CabeceraPrincipal />;
       </header>
-    </div>
+      <section class="caviar-hero-area" id="home">
+        <CabeceraCarusel />
+      </section>
+      <div class="caviar-food-menu section-padding-150 clearfix">
+        <ContenidoMenu />
+      </div>
+    </>
   );
 }
 
