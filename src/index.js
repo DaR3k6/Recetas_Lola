@@ -1,15 +1,11 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
+import ReactDOM from "react-dom/client";
 import App from "./App";
+import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 import "bootstrap";
-import "jquery";
-import "owl.carousel/dist/assets/owl.carousel.css"; // Importa los estilos de Owl Carousel
-import "owl.carousel"; // Importa el archivo JavaScript de Owl Carousel
-const root = createRoot(document.querySelector("#root"));
-
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
     <App />

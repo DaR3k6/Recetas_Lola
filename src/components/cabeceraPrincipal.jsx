@@ -1,37 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import BarraBusqueda from "./barraBusqueda";
+
 const CabeceraPrincipal = () => {
-  //ABIRIR FORMULARIO
-  const [busca, setBuscar] = useState(false);
-  //TEXTO ESCRITO
-
-  const mostrarFormulario = () => {
-    setBuscar(!busca);
-
-    console.log("Mostrando formulario");
+  const [abrirLupa, setAbrirLupa] = useState(false);
+  const [texto, setTexto] = useState("");
+  const formularioClick = () => {
+    setAbrirLupa(!abrirLupa);
+    setTexto("");
   };
-
   const cerrarFormulario = () => {
-    setBuscar(false);
+    setAbrirLupa(false);
+    setTexto("");
   };
-
-  console.log("Valor de busca:", busca);
-  useEffect(() => {
-    if (busca) {
-      document.body.classList.add("search-form-on");
-    } else {
-      document.body.classList.remove("search-form-on");
-    }
-  }, [busca]);
   return (
     <>
       <div className="container h-100">
         <div className="row h-100">
           <div className="col-12 h-100">
             <nav className="h-100 navbar navbar-expand-lg align-items-center">
-              <a className="navbar-brand" href="index.html">
-                caviar
-              </a>
+              <img
+                className="rounded-circle  "
+                src="./img/logo.png"
+                alt=""
+                width={"65px"}
+              />
               <button
                 className="navbar-toggler"
                 type="button"
@@ -41,7 +33,7 @@ const CabeceraPrincipal = () => {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
-                <span className="navbar-toggler-icon"></span>
+                <span className="fa fa-bars"></span>
               </button>
               <div className="collapse navbar-collapse" id="caviarNav">
                 <ul className="navbar-nav ml-auto" id="caviarMenu">
@@ -53,7 +45,7 @@ const CabeceraPrincipal = () => {
                   <li className="nav-item dropdown">
                     <a
                       className="nav-link dropdown-toggle"
-                      href="#"
+                      href="www.test.com"
                       id="navbarDropdown"
                       role="button"
                       data-toggle="dropdown"
@@ -111,23 +103,26 @@ const CabeceraPrincipal = () => {
                     </a>
                   </li>
                 </ul>
-                {/* <!-- Search Btn --> */}
+
                 <div className="caviar-search-btn">
                   <a
                     id="search-btn"
-                    href="#"
-                    onClick={e => {
-                      e.preventDefault();
-                      mostrarFormulario();
-                    }}
+                    href="www.test.com"
+                    onClick={formularioClick}
                   >
-                    <i className="bi bi-search"></i>
+                    <i className="fa fa-search" aria-hidden="true"></i>
                   </a>
                 </div>
-                <BarraBusqueda
-                  busca={busca}
-                  cerrarFormulario={cerrarFormulario}
-                />
+                <div
+                  className={`caviar-search-form ${
+                    abrirLupa ? "search-form-on" : ""
+                  }`}
+                >
+                  <BarraBusqueda
+                    cerrarFormulario={cerrarFormulario}
+                    texto={texto}
+                  />
+                </div>
               </div>
             </nav>
           </div>
@@ -136,5 +131,125 @@ const CabeceraPrincipal = () => {
     </>
   );
 };
+
+// return (
+//   <>
+//     <div classNameName="container h-100">
+//       <div classNameName="row h-100">
+//         <div classNameName="col-12 h-100 ">
+//           <nav classNameName="h-100 navbar navbar-expand-lg align-items-center">
+//             <li classNameName="nav-item active">
+//               <img
+//                 classNameName="rounded-circle  "
+//                 src="./img/logo.png"
+//                 alt=""
+//                 width={"65px"}
+//               />
+//             </li>
+//             <button
+//               classNameName="navbar-toggler"
+//               type="button"
+//               data-toggle="collapse"
+//               data-target="#caviarNav"
+//               aria-controls="caviarNav"
+//               aria-expanded="false"
+//               aria-label="Toggle navigation"
+//             >
+//               <span className="navbar-toggler-icon"></span>
+//             </button>
+//             <div classNameName="collapse navbar-collapse" id="caviarNav">
+//               <ul classNameName="navbar-nav ml-auto" id="caviarMenu">
+//                 <li classNameName="nav-item dropdown">
+//                   <a
+//                     classNameName="nav-link dropdown-toggle"
+//                     href="www.test.com"
+//                     id="navbarDropdown"
+//                     role="button"
+//                     data-toggle="dropdown"
+//                     aria-haspopup="true"
+//                     aria-expanded="false"
+//                   >
+//                     Pages
+//                   </a>
+//                   <div
+//                     classNameName="dropdown-menu"
+//                     aria-labelledby="navbarDropdown"
+//                   >
+//                     <a classNameName="dropdown-item" href="index.html">
+//                       Home
+//                     </a>
+//                     <a classNameName="dropdown-item" href="menu.html">
+//                       Menu
+//                     </a>
+//                     <a classNameName="dropdown-item" href="regular-page.html">
+//                       Regular Page
+//                     </a>
+//                     <a classNameName="dropdown-item" href="contact.html">
+//                       Contact
+//                     </a>
+//                   </div>
+//                 </li>
+//                 <li classNameName="nav-item">
+//                   <a classNameName="nav-link" href="#about">
+//                     About Us
+//                   </a>
+//                 </li>
+//                 <li classNameName="nav-item">
+//                   <a classNameName="nav-link" href="#menu">
+//                     Menu
+//                   </a>
+//                 </li>
+//                 <li classNameName="nav-item">
+//                   <a classNameName="nav-link" href="#awards">
+//                     Awards
+//                   </a>
+//                 </li>
+//                 <li classNameName="nav-item">
+//                   <a classNameName="nav-link" href="#testimonial">
+//                     Testimonials
+//                   </a>
+//                 </li>
+//                 <li classNameName="nav-item">
+//                   <a classNameName="nav-link" href="#reservation">
+//                     Reservation
+//                   </a>
+//                 </li>
+//                 <li classNameName="nav-item">
+//                   <a classNameName="nav-link" href="contact.html">
+//                     Contact
+//                   </a>
+//                 </li>
+//               </ul>
+
+//               <div classNameName="caviar-search-btn">
+//                 <button
+//                   id="search-btn"
+//                   onClick={formularioClick}
+//                   style={{
+//                     border: "none",
+//                     backgroundColor: "transparent",
+//                     cursor: "pointer",
+//                   }}
+//                 >
+//                   <Search color="white" size={20} />
+//                 </button>
+//                 <div
+//                   classNameName={`caviar-search-form ${
+//                     abrirLupa ? "search-form-on" : ""
+//                   }`}
+//                 >
+//                   <BarraBusqueda
+//                     cerrarFormulario={cerrarFormulario}
+//                     texto={texto}
+//                   />
+//                 </div>
+//               </div>
+//             </div>
+//           </nav>
+//         </div>
+//       </div>
+//     </div>
+//   </>
+// );
 
 export default CabeceraPrincipal;
