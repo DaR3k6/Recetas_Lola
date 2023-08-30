@@ -1,6 +1,23 @@
-import React, { useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
+import FormularioEditar from "./formularioEditar";
 const ContenidoMenu = ({ datos, setDatos }) => {
+  const [recetaSeleccionada, setRecetaSeleccionada] = useState(null);
+  const [editar, setEditar] = useState(false);
+  const [show, setShow] = useState(false);
+
+  //CIERRA LA MODAL
+  const handleClose = () => {
+    setShow(false);
+    setEditar(false);
+  };
+  const handleShow = () => setShow(true);
+
+  const abrirModal = receta => {
+    setRecetaSeleccionada(receta);
+    setEditar(true);
+    handleShow(); // Abre el modal de edición al hacer clic en "EDITAR"
+  };
+
   useEffect(() => {
     let receta = JSON.parse(localStorage.getItem("receta"));
     setDatos(receta);
@@ -11,7 +28,6 @@ const ContenidoMenu = ({ datos, setDatos }) => {
     setDatos(bdNueva);
     localStorage.setItem("receta", JSON.stringify(bdNueva));
   };
-
   return (
     <>
       <div className="container">
@@ -76,6 +92,9 @@ const ContenidoMenu = ({ datos, setDatos }) => {
                             <button
                               type="button"
                               className="btn btn-outline-success"
+                              onClick={() => {
+                                abrirModal(receta);
+                              }}
                             >
                               Editar
                             </button>
@@ -84,6 +103,15 @@ const ContenidoMenu = ({ datos, setDatos }) => {
                       </div>
                     ))}
                   </>
+                )}
+                {editar && recetaSeleccionada && (
+                  <FormularioEditar
+                    datos={datos}
+                    setDatos={setDatos}
+                    receta={recetaSeleccionada}
+                    show={show}
+                    handleClose={handleClose}
+                  />
                 )}
               </div>
             </div>

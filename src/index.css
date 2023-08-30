@@ -1271,6 +1271,26 @@ blockquote img {
   font-weight: 600;
 }
 /*RESPONSIVO*/
+.reservation-form-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.reservation-form {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+@media (max-width: 576px) {
+  .reservation-form {
+    max-width: 100%;
+  }
+}
+
 @media (min-width: 992px) and (max-width: 1199px) {
   .single-hero-slides {
     height: 650px;
