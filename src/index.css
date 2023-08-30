@@ -1141,7 +1141,7 @@ li {
   transform: rotate(-90deg);
   position: relative;
   z-index: 1;
-  top: 420px;
+  top: 250px;
 }
 
 .caviar-menu-slides .owl-nav {

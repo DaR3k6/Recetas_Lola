@@ -105,11 +105,7 @@ const CabeceraPrincipal = () => {
                 </ul>
 
                 <div className="caviar-search-btn">
-                  <a
-                    id="search-btn"
-                    href="www.test.com"
-                    onClick={formularioClick}
-                  >
+                  <a id="search-btn" href="!#" onClick={formularioClick}>
                     <i className="fa fa-search" aria-hidden="true"></i>
                   </a>
                 </div>

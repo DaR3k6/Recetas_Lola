@@ -24,7 +24,7 @@ function App() {
   return (
     <>
       <header className="header_area" id="header">
-        <CabeceraPrincipal />
+        <CabeceraPrincipal datos={datos} setDatos={setDatos} />
       </header>
       <section className="caviar-hero-area" id="home">
         <CabeceraCarusel />
