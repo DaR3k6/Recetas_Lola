@@ -6,6 +6,12 @@ const ContenidoMenu = ({ datos, setDatos }) => {
     setDatos(receta);
   }, [setDatos]);
 
+  const borrarReceta = id => {
+    let bdNueva = datos.filter(receta => receta.id !== parseInt(id));
+    setDatos(bdNueva);
+    localStorage.setItem("receta", JSON.stringify(bdNueva));
+  };
+
   return (
     <>
       <div className="container">
@@ -58,6 +64,21 @@ const ContenidoMenu = ({ datos, setDatos }) => {
                                 .toFixed(2)
                                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                             </h3>
+                            <button
+                              type="button"
+                              className="btn btn-outline-danger"
+                              onClick={() => {
+                                borrarReceta(receta.id); //
+                              }}
+                            >
+                              Borrar
+                            </button>
+                            <button
+                              type="button"
+                              className="btn btn-outline-success"
+                            >
+                              Editar
+                            </button>
                           </div>
                         </div>
                       </div>
