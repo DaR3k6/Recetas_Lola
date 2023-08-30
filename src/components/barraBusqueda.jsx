@@ -1,15 +1,30 @@
 import React, { useState } from "react";
 
-const BarraBusqueda = ({ cerrarFormulario, texto }) => {
-  const [searchText, setTexto] = useState("");
+const BarraBusqueda = ({ cerrarFormulario, datos, setDatos, texto }) => {
+  // Estado para el término de búsqueda
+  const [busqueda, setBusqueda] = useState("");
 
-  const controlFormulario = e => {
-    setTexto(e.target.value);
+  const encuentroBusqueda = e => {
+    let buscar = e.target.value;
+    let resultado = datos.filter(receta => {
+      return receta.nombre.toLowerCase().includes(buscar.toLowerCase());
+    });
+
+    if (buscar.length === 0) {
+      resultado = JSON.parse(localStorage.getItem("receta"));
+    }
+
+    setDatos(resultado);
+    setBusqueda(buscar);
   };
 
   const exitFormulario = () => {
     cerrarFormulario();
-    setTexto("");
+    setBusqueda("");
+  };
+
+  const manejarBusqueda = e => {
+    e.preventDefault();
   };
 
   return (
@@ -25,16 +40,15 @@ const BarraBusqueda = ({ cerrarFormulario, texto }) => {
               >
                 <i className="bi bi-x-circle-fill" aria-hidden="true"></i>
               </div>
-              <form>
+              <form onSubmit={manejarBusqueda}>
                 <input
                   type="search"
                   name="caviarSearch"
                   id="search"
                   placeholder="Busca la receta de Lola"
-                  value={searchText}
-                  onChange={controlFormulario}
+                  value={busqueda}
+                  onChange={encuentroBusqueda}
                 />
-                <input type="submit" className="d-none" value="submit" />
               </form>
             </div>
           </div>
